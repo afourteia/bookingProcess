@@ -116,7 +116,7 @@ const columns: GridColDef<Appointment>[] = [
     sortable: false,
     filterable: false,
     flex: 3,
-    renderCell: (_params) => {
+    renderCell: () => {
       return (
         <Grid container display="flex" flexDirection="row" spacing={1}>
           <Grid item>

@@ -12,10 +12,21 @@ export default function Login() {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleLogin = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
-    login(username, password);
+    setLoading(true);
+
+    try {
+      await login(username, password);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -94,6 +105,7 @@ export default function Login() {
             type="submit"
             variant="contained"
             onClick={handleLogin}
+            disabled={loading}
           >
             <Typography variant="button" fontWeight="bold" color="white">
               Login Now
